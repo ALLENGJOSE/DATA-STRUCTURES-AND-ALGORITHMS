@@ -1,0 +1,41 @@
+public class Solution {
+
+    static ArrayList<Integer> ans = new ArrayList<>();
+
+        public static void nodesWithoutSiblingsUtil(BinaryTreeNode<Integer> root) {
+
+
+		if (root == null) {
+			return;
+		}
+
+		if (root.left != null && root.right != null) {
+			nodesWithoutSiblingsUtil(root.left);
+			nodesWithoutSiblingsUtil(root.right);
+		}
+
+		else if (root.right != null) {
+			ans.add(root.right.data);
+			nodesWithoutSiblingsUtil(root.right);
+		}
+
+		else if (root.left != null) {
+			ans.add(root.left.data);
+			nodesWithoutSiblingsUtil(root.left);
+		}
+		return;
+	}
+
+
+
+	public static ArrayList<Integer> nodesWithoutSiblings(BinaryTreeNode<Integer> root) {
+		//WRITE YOUR CODE HERE
+		ans=new ArrayList<>();
+        nodesWithoutSiblingsUtil(root);
+        return ans;
+	}
+    }
+
+The time complexity of the given code is O(n), where n is the number of nodes in the binary tree. This is because the code traverses all of the nodes in the tree in order to find the nodes without siblings.
+
+The space complexity of the given code is O(1), because the code does not need to store any additional data beyond the ArrayList ans, which is a constant size.
