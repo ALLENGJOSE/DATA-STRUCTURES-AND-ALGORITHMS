@@ -1,0 +1,45 @@
+  import java.util.* ;
+import java.io.*; 
+class Queue {
+	// Stacks to be used in the operations.
+	Stack<Integer> stk1, stk2;
+
+	public Queue() {
+		// Intialise here.
+		stk1=new Stack<>();
+		stk2=new Stack<>();
+	}
+
+	// Enqueues 'X' into the queue. Returns true after enqueuing.
+	public boolean enqueue(int x) {
+		// Write your code here.
+		while(!stk1.isEmpty()){
+			stk2.push(stk1.pop());
+		}
+		stk1.push(x);
+		while(!stk2.isEmpty()){
+			stk1.push(stk2.pop());
+		}
+		return true;
+	}
+	/*
+	   Dequeues top element from queue. Returns -1 if the queue is empty, 
+	   otherwise returns the popped element.
+	*/
+	public int dequeue() {
+		// Write your code here.
+		if(stk1.isEmpty()){
+			return -1;
+		}
+		return stk1.pop();
+	}
+};
+
+The time complexity of the enqueue() operation in your code is O(N) in the worst case. This is because in the worst case, we need to pop all the elements from stk1 and push them onto stk2, and then pop all the elements from stk2 and push them onto stk1 in order to insert a new element into the queue.
+The time complexity of the dequeue() operation is O(1) in the best case. This is because in the best case, we can simply pop the top element from stk1 and return it. However, in the worst case, stk1 may be empty, and we need to pop all the elements from stk2 and push them onto stk1 in order to get the top element of the queue. This means that the worst-case time complexity of the dequeue() operation is also O(N).
+The space complexity of your code is O(N). This is because we need to use two stacks to implement the queue, and each stack can store up to N elements.
+
+Here is a summary of the time and space complexity of your code:
+Operation	Time Complexity	Space Complexity
+enqueue()	O(N) (worst case)	O(N)
+dequeue()	O(1) (best case), O(N) (worst case)	O(N)
