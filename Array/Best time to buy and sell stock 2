@@ -1,0 +1,15 @@
+You can do as many transactions as you like
+public class Solution {
+    public static long getMaximumProfit (int n, long[] values) {
+        // Your code goes here.
+        long profit=0;
+        for(int i=1;i<values.length;i++){
+            if(values[i]>values[i-1]){
+                profit += (values[i]-values[i-1]);
+            }
+        }
+        return profit;
+    }
+}
+TC:O(N)
+SC:O(1)
