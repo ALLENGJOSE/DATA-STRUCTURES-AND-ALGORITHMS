@@ -1,0 +1,14 @@
+public class Solution {
+  public static int noOfLeafNodes(BinaryTreeNode<Integer> root) {
+    // Write your code here.
+    if(root==null){
+      return 0;
+      }else if(root.left==null && root.right==null){
+      return 1;
+    }else{
+      return noOfLeafNodes(root.left)+noOfLeafNodes(root.right);
+    }
+  }
+}
+TC:O(N)
+SC:O(H)
