@@ -1,0 +1,21 @@
+*******************************************************/
+import java.util.ArrayList;
+
+public class Solution {
+
+    public static void preOrder(BinaryTreeNode<Integer> root, ArrayList<Integer> ans){
+        if(root==null) return;
+
+        ans.add(root.data);
+        preOrder(root.left, ans);
+        preOrder(root.right, ans);
+    }
+	public static ArrayList<Integer> preorderTraversal(BinaryTreeNode<Integer> root) {
+		// Write your code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        preOrder(root,ans);
+        return ans;
+    }
+}
+TC:O(N)
+SC:O(N)
