@@ -1,0 +1,32 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+  public static Queue<Integer> reverseElements(Queue<Integer> q, int k) 
+  {
+    // Write your code here.
+    int n =q.size();
+    Stack<Integer> s= new Stack<>();
+    for(int i=0;i<k;i++){
+      s.push(q.poll());
+    }
+    for(int i=0;i<k;i++){
+      q.add(s.pop());
+    }
+    for(int i=0;i<n-k;i++){
+      q.add(q.poll());
+    }
+    return q;
+  }
+}
+
+Time complexity:
+
+Pushing the first k elements onto the stack: O(k)
+Popping the first k elements off the stack and adding them back to the queue: O(k)
+Rotating the remaining elements of the queue: O(n-k)
+Total: O(k) + O(k) + O(n-k) = O(n)
+Space complexity:
+
+Storing the first k elements of the queue on the stack: O(k)
+Total: O(k) = O(n)
