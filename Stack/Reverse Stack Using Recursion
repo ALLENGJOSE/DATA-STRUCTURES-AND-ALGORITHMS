@@ -1,0 +1,46 @@
+import java.util.Stack;
+
+public class Solution {
+
+	public static void insertAtBottom(Stack<Integer> s,int x){
+	if(s.isEmpty()){
+      s.push(x);
+      return;
+    }
+    int num=s.peek();
+    s.pop();
+
+    //recursive call
+    insertAtBottom(s, x);
+    s.push(num);
+	}
+    
+	public static void reverseStack(Stack<Integer> stack) {
+		// write your code here
+		//base case
+		if(stack.isEmpty()){
+			return;
+		}
+		int num=stack.peek();
+		stack.pop();
+
+		//recursive call
+		reverseStack(stack);
+
+		insertAtBottom(stack, num);
+	}
+
+}
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+The reverseStack function uses recursion to pop elements from the stack and insert them at the bottom, effectively reversing the stack. This process continues until the stack is empty.
+For each element in the stack, it is removed once from the stack and then inserted back at the bottom using the insertAtBottom function.
+Therefore, for n elements in the stack, there will be a total of n recursive calls to insertAtBottom, and each call has a constant time complexity O(1) for pushing, popping, and peeking from the stack.
+So, the overall time complexity of the reverseStack function is O(n), where n is the number of elements in the stack.
+
+The space complexity is determined by the stack's space usage and the recursion stack.
+The insertAtBottom function is called recursively, and each call creates a new activation record in the recursion stack. The maximum depth of the recursion stack is equal to the number of elements in the stack.
+Additionally, there is a single stack (stack) used for storing elements.
+Therefore, the space complexity of this code is O(n), where n is the number of elements in the stack.
