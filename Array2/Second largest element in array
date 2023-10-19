@@ -1,0 +1,26 @@
+You have been given a random integer array/list(ARR) of size N. You are required to find and return the second largest element present in the array/list.
+
+public class Solution {  
+
+    public static int secondLargestElement(int[] arr, int n) {
+    	//Your code goes here
+       int lar1;
+		int lar2;
+
+		lar1=lar2=Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+			lar1=Math.max(lar1, arr[i]);
+		}
+		for(int j=0;j<arr.length;j++){
+			if(lar1!=arr[j]){
+			lar2=Math.max(lar2, arr[j]);
+			}
+			}
+			if(lar2==Integer.MIN_VALUE){
+		return -1;
+			}
+			return lar2;
+	}
+}
+TC:O(N)
+sc:0(1)
