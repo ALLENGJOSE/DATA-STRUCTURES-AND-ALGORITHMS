@@ -1,0 +1,22 @@
+You have been given a singly linked list of integers where the elements are sorted in ascending order.
+Write a function that removes the consecutive duplicate values such that the given list only contains unique elements and returns the head to the updated list.
+public class Solution {
+
+	public static Node<Integer> removeDuplicates(Node<Integer> head) {
+		//Your code goes here
+		if(head==null){
+			return head;
+		}
+		Node<Integer> currentNode = head;
+
+		while(currentNode.next !=null){
+			if(currentNode.data.equals(currentNode.next.data)){
+				currentNode.next=currentNode.next.next;
+			}else{
+				currentNode=currentNode.next;
+			}
+		}
+		return head;
+	}
+
+}
