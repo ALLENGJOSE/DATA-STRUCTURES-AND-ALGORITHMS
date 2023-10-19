@@ -1,0 +1,17 @@
+Given the root of a complete binary tree, return the number of the nodes in the tree.
+Input: root = [1,2,3,4,5,6]
+Output: 6
+class Solution {
+    public int countNodes(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int ans=1;
+        ans +=countNodes(root.left);
+        ans +=countNodes(root.right);
+        return ans;
+    }
+}
+TC:
+The time complexity of your code for countNodes is O(n), where n is the number of nodes in the tree. This is because the code traverses the entire tree, visiting each node once.
+SC:The code uses a recursive call stack to traverse the tree. The worst-case scenario is when the tree is a perfect binary tree, in which case the height of the tree is log2(n). Therefore, the space complexity of the code is O(log2(n)), which is equivalent to O(log(n)).
