@@ -1,0 +1,34 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.Queue;
+
+public class Solution {
+    public static void reverse(Queue < Integer > q) {
+        // Write your code here.
+        int n =q.size();
+        Stack<Integer> s =new Stack<>();
+        for(int i=0;i<n;i++){
+            s.push(q.poll());
+        }
+        for(int i=0;i<n;i++){
+            q.add(s.pop());
+        }
+    }
+}
+
+
+The time complexity of your code to reverse a queue in Java is O(n), where n is the size of the queue. This is because you iterate over the queue twice, once to enqueue all of the elements into the stack and once to dequeue all of the elements from the stack and enqueue them back into the queue.
+
+The space complexity of your code is also O(n), because you need to create a stack to store the elements of the queue while you are reversing it.
+
+Here is a breakdown of the time and space complexity of your code:
+
+Time complexity:
+
+Enqueue all elements of the queue into the stack: O(n)
+Dequeue all elements from the stack and enqueue them back into the queue: O(n)
+Total time complexity: O(n)
+Space complexity:
+
+Stack to store the elements of the queue: O(n)
+Total space complexity: O(n)
