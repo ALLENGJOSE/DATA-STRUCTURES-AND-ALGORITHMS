@@ -1,0 +1,23 @@
+Write a recursive function that returns the sum of the digits of a given integer.
+Sample Input 1 :
+12345
+Sample Output 1 :
+15
+Code:
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int sumofDigits(int n) {
+        // Write your code here.
+        
+        if(n<10){
+            return n;
+        }
+        int sum=0;
+        while(n>0){
+        sum +=(n%10);
+        n/=10;
+        }
+        return sumofDigits(sum);
+    }
+}
