@@ -1,0 +1,66 @@
+You are given an integer array/list(ARR) of size N. It contains only 0s, 1s and 2s. Write a solution to sort this array/list in a 'single scan'.
+'Single Scan' refers to iterating over the array/list just once or to put it in other words, you will be visiting each element in the array/list just once.
+public class Solution {
+1st approach:
+    public static void sort012(int[] arr){
+    	//Your code goes here
+        int zero=0;
+        int one=0;
+        int two=0;
+
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==0){
+                zero++;                          //Creating container to store 0,1,2
+            }else if(arr[i]==1){
+                one++;
+            }else{
+                two++;
+            }
+        }
+        int index=0;
+        for(int i=1;i<=zero;i++){
+            arr[index]=0;
+            index++;                            //placing values in the array
+        }
+        for(int i=1;i<=one;i++){
+            arr[index]=1;
+            index++;
+        }
+        for(int i=1;i<=two;i++){
+            arr[index]=2;
+            index++;
+        }
+    }
+
+}
+TC:O(2N)
+SC:O(1)
+
+2nd approach:
+public class Solution {
+
+    public static void sort012(int[] arr){
+    	//Your code goes here
+        int low=0,mid=0,high=arr.length-1;
+        while(mid<=high){
+            if(arr[mid]==0){
+                int temp=arr[low];
+                arr[low]=arr[mid];   //used 3 pointers low=0,mid=0,high=arr.length-1;
+                arr[mid]=temp;
+                low++;
+                mid++;
+            }else if(arr[mid]==1){
+               mid++;
+            }else{
+                int temp=arr[mid];
+                arr[mid]=arr[high];
+                arr[high]=temp;
+                high--;
+            }
+        }
+    }
+
+}
+
+TC:O(N);
+SC:O(1);
