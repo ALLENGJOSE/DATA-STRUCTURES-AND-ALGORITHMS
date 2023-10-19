@@ -1,0 +1,65 @@
+Following is the Node class already written for the Linked List
+
+	class  Node<T> {
+    	T data;
+    	 Node<T> next;
+    
+    	public  Node(T data) {
+        	this.data = data;
+    	}
+	}
+
+*****************************************************************/
+
+public class Solution {
+	public static Node<Integer> deleteNode( Node<Integer> head, int pos) {
+		// Write your code here.
+// To delete a node from a LL, all we need to do is to break the link that connects that node
+// and its previous one, and then create a link between the previous node and the next
+// node of the one that we wish to delete. For example, let’s take a look at the sample
+// input. We need to delete the node at index 3, which holds the value ‘2’. Let’s call that
+// node ‘B’ and let’s call the node which is just behind it (at index 2) ‘A’. Also, the node just
+// ahead of ‘B’ can be called ‘C’. So our linked list looks something like this.
+// 3 -> 4 -> 5 -> 2 -> 6 -> 1 -> 9 -> null
+// A B C
+// To recall, we need to delete node ‘B’. So all we need to do is to go till node ‘A’ and assign
+// node C to A’s next. This will break the link between A and B, and create a new one
+// between A and C
+
+// To delete a node from a LL, all we need to do is to break the link that connects that node
+// and its previous one, and then create a link between the previous node and the next
+// node of the one that we wish to delete. For example, let’s take a look at the sample
+// input. We need to delete the node at index 3, which holds the value ‘2’. Let’s call that
+// node ‘B’ and let’s call the node which is just behind it (at index 2) ‘A’. Also, the node just
+// ahead of ‘B’ can be called ‘C’. So our linked list looks something like this.
+// 3 -> 4 -> 5 -> 2 -> 6 -> 1 -> 9 -> null
+// A B C
+// To recall, we need to delete node ‘B’. So all we need to do is to go till node ‘A’ and assign
+// node C to A’s next. This will break the link between A and B, and create a new one
+// between A and C.
+		if(head==null){
+			return head;
+		}
+		if(pos<0){
+			return head;
+		}
+		if(pos==0){
+			return head.next;
+		}
+	    Node<Integer> currentNode=head;
+		int currentPosition=0;
+		
+		while(currentNode !=null && currentPosition <(pos -1)){
+			currentPosition=currentPosition+1;
+			currentNode=currentNode.next;
+		}
+		if(currentNode==null || currentNode.next==null){
+			return head;
+		}
+		currentNode.next=currentNode.next.next;
+		return head;
+	}
+}
+
+TIME COMPLEXITY:O(min(pos,n))
+SPACE COMPLEXITY:O(1)
