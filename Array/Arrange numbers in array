@@ -1,0 +1,28 @@
+You have been given an empty array(ARR) and its size N. The only input taken from the user will be N and you need not worry about the array.
+Your task is to populate the array using the integer values in the range 1 to N(both inclusive) in the order - 1,3,5,.......,6,4,2.
+
+public class Solution {
+    
+    public static void arrange(int[] arr, int n) {
+    	//Your code goes here
+        int valuetoprint = 1;
+        int startindex=0;
+        int endindex=n-1;
+        while(startindex <= endindex){
+            arr[startindex] = valuetoprint;
+            valuetoprint++;
+        if(endindex==startindex){
+        break;
+        }
+        else
+        {
+            arr[endindex] = valuetoprint;
+            valuetoprint++;
+        }
+        startindex++;
+        endindex--;
+        }
+    }
+}
+TC:O(N)
+SC:O(1)
