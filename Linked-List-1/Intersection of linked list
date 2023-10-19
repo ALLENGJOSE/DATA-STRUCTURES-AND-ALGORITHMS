@@ -1,0 +1,29 @@
+You are given two Singly Linked Lists of integers, which may have an intersection point.
+Your task is to return the first intersection node. If there is no intersection, return NULL.
+public class Solution {
+    public static int findIntersection(Node firstHead, Node secondHead) {
+        //Write your code here
+        if(firstHead==null || secondHead==null) return 0;
+
+        Node first=firstHead;
+        Node second=secondHead;
+
+        while(first!=second){
+            if(first==null){
+                first=secondHead;
+            }else{
+                first=first.next;
+            }
+            if(second==null){
+                second=firstHead;
+            }else{
+                second=second.next;
+            }
+        }
+        return first.data;
+
+    }
+}
+
+TC:O(M+N)
+SC:O(1)
