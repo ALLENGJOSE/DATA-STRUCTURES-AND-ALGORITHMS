@@ -1,0 +1,67 @@
+1st approach:
+public class Solution {
+
+
+	public static int maximum(BinaryTreeNode<Integer> root){
+		if(root==null){
+			return Integer.MIN_VALUE;
+		}
+		return Math.max(root.data, Math.max(maximum(root.left),maximum(root.right)));
+	}
+
+	public static int minimum(BinaryTreeNode<Integer> root){
+		if(root==null){
+			return Integer.MAX_VALUE;
+		}
+		return Math.min(root.data, Math.max(minimum(root.left),minimum(root.right)));
+	}
+
+	public static boolean isBST(BinaryTreeNode<Integer> root) {
+
+		if(root==null){
+			return true;
+		}
+		int leftmax=maximum(root.left);
+		int rightmin=minimum(root.right);
+		if(root.data<=leftmax){
+				return false;
+		}
+		if(root.data>rightmin){
+			return false;
+		}
+		//now checking for entire subtree
+		boolean isLeft=isBST(root.left);
+		boolean isRight=isBST(root.right);
+		if(isLeft&& isRight){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+}
+TC:O(n^2)
+sc:O(h)
+
+BETTER APPROACH:
+public class Solution {
+
+	public static boolean isBST(BinaryTreeNode<Integer> root,int min,int max){
+		if(root==null){
+			return true;
+		}
+		if(root.data>min && root.data<=max){
+			boolean ans1=isBST(root.left, min, root.data-1);
+			boolean ans2=isBST(root.right,root.data,max);
+			return ans1&&ans2;
+		}else{
+			return false;
+		}
+	}
+
+	public static boolean isBST(BinaryTreeNode<Integer> root) {
+
+	return	isBST(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+
+TC:O(N)
+SC:O(H)
