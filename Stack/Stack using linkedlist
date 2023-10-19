@@ -1,0 +1,61 @@
+Implement a Stack Data Structure specifically to store integer data using a Singly Linked List.
+All the operations should be completed in O(1) time.
+
+
+public class Solution {
+    static class Stack {
+        //Write your code here
+        private Node head;
+        private int size;
+
+        Stack()
+        {
+            //Write your code here
+            head=null;
+            size=0;
+        }
+
+        int getSize()
+        {
+            //Write your code here
+            return size;
+        }
+
+        boolean isEmpty()
+        {
+            //Write your code here
+            return head==null;
+        }
+
+        void push(int data)
+        {
+            //Write your code here
+            Node newNode=new Node(data);
+            newNode.next=head;
+            head=newNode;
+            size++;
+        }
+
+        void pop()
+        {
+            //Write your code here
+            if(getSize()==0){
+                return ;
+            }
+            int temp=head.data;
+            head=head.next;
+            size--;
+        }
+
+        int getTop()
+        {
+            //Write your code here
+            if(getSize()==0){
+                return -1;
+            }
+            return head.data;
+        }
+    }
+}
+TC:O(1)
+SC:O(1)
