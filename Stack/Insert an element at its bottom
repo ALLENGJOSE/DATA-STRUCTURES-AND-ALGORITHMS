@@ -1,0 +1,27 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+
+  public static void solve(Stack <Integer> s, int x){
+    //base case
+    if(s.isEmpty()){
+      s.push(x);
+      return;
+    }
+    int num=s.peek();
+    s.pop();
+
+    //recursive call
+    solve(s, x);
+    s.push(num);
+  }
+  public static Stack<Integer> pushAtBottom(Stack <Integer> myStack, int x) 
+  {
+    // Write your code here
+    solve(myStack,x);
+    return myStack;
+  }
+}
+TC:O(N)
+SC:O(N)
