@@ -1,0 +1,37 @@
+For a given Binary Tree of type integer and a number X, find whether a node exists in the tree with data X or not.
+public class Solution {
+
+	public static boolean isNodePresent(BinaryTreeNode<Integer> root, int x) {
+	    //Your code goes here
+		if (root==null)
+        {
+            return false;
+        }
+        
+        if (root.data==x)
+        {
+            return true;
+        }
+        else
+        {
+            return (isNodePresent(root.left,x)||isNodePresent(root.right,x));
+        }
+	}
+
+}
+
+The time complexity of your code for isNodePresent is O(h), where h is the height of the tree. This is because the code traverses the tree from the root node to the leaf nodes, visiting each node once. The worst-case scenario is when the node is not present in the tree, in which case the code has to traverse the entire tree.
+The space complexity of the code is O(h), where h is the height of the tree. This is because the code uses a recursive call stack to traverse the tree. The worst-case scenario is when the tree is a perfect binary tree, in which case the height of the tree is log2(n). Therefore, the space complexity of the code is O(log2(n)), which is equivalent to O(log(n)).
+
+Here is a more detailed explanation of the time and space complexity analysis:
+Time complexity:
+The code traverses the tree from the root node to the leaf nodes, visiting each node once. This is because the code recursively calls itself on the left and right subtrees of each node. The base case is when the node is null, in which case the code returns false.
+Space complexity:
+
+The code uses a recursive call stack to traverse the tree. The worst-case scenario is when the tree is a perfect binary tree, in which case the height of the tree is log2(n). Therefore, the space complexity of the code is O(log2(n)), which is equivalent to O(log(n)).
+
+Here is a table that summarizes the time and space complexity of the code:
+
+Complexity	Worst case
+Time complexity	O(h)
+Space complexity	O(h) = O(log(n
