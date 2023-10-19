@@ -1,0 +1,68 @@
+Brute Force:
+
+public class Solution {
+
+    public static int height(TreeNode<Integer> root){
+        if(root==null){
+            return 0;
+        }
+        int Heightleftside=height(root.left);
+        int Heightrightside=height(root.right);
+
+        return 1+Math.max(Heightleftside, Heightrightside);
+    }
+    public static boolean isBalancedBT(TreeNode<Integer> root) {
+        // Write your code here.
+        if(root==null){
+            return true;
+        }
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+
+        if(Math.abs(leftHeight-rightHeight)>1){
+            return false;
+        }
+
+        boolean isLeftBalanced =isBalancedBT(root.left);
+        boolean isRightBalanced =isBalancedBT(root.right);
+
+        return isLeftBalanced && isRightBalanced;
+
+    }
+}
+
+TC:O(N^2) IN UNBALANCED TREE AND O(NLOGN) IN PERFECTLY BALANCED TREE
+SC:O(N)
+
+best approach:
+ask for height and balanced collectively (therefore a class would be required as we are returning two things)
+public class Solution {
+
+	public static boolean isBalancedBT(BinaryTreeNode<Integer> root) {
+        if(root == null){
+            return true;
+        }
+		return isBalancedBTUtil(root).isBalanced;
+	}
+    public static Pair isBalancedBTUtil(BinaryTreeNode<Integer> root) {
+        if(root == null){
+            return new Pair(0,true);
+        }
+        Pair left = isBalancedBTUtil(root.left);
+        Pair right = isBalancedBTUtil(root.right);
+
+        boolean diff = (Math.abs(left.height - right.height)<=1);
+
+        return new Pair(1+Math.max(left.height,right.height),(diff && left.isBalanced && right.isBalanced));    
+    }
+}
+class Pair{
+    int height;
+    boolean isBalanced;
+
+    public Pair(int height,boolean isBalanced){
+        this.height = height;
+        this.isBalanced= isBalanced;
+    }
+}
+TC:O(N)
