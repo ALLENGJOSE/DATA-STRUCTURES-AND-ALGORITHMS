@@ -1,0 +1,18 @@
+public class Solution {
+
+    public static void replacewithDepth(BinaryTreeNode<Integer> root,int depth){
+        if(root==null){
+            return;
+        }
+        root.data=depth;
+        replacewithDepth(root.left, depth+1);
+        replacewithDepth(root.right,depth+1);
+    }
+    public static BinaryTreeNode<Integer> changeToDepthTree(BinaryTreeNode<Integer> root) {
+        // Write your code here.
+        replacewithDepth(root,0);
+        return root;
+    }
+}
+TC:O(N)
+SC:O(H)
