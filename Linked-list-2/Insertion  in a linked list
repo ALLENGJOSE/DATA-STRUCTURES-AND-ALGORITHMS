@@ -1,0 +1,23 @@
+You are given a Singly Linked List of ‘N’ positive integers. 
+Your task is to add a node having the value ‘VAL’ at position ‘POS’ in the linked list.
+
+public class Solution {
+
+    static Node insert(Node head, int n, int pos, int val) {
+        // Write your code here.
+
+        if(pos==0){
+            Node newNode =new Node(val);
+            newNode.next=head;
+            return newNode;
+        }
+        if(head==null){
+            return head;
+        }
+        head.next=insert(head.next,n,pos-1,val);
+        return head;
+    }
+}
+
+TC:O(N)
+SC:O(1)
