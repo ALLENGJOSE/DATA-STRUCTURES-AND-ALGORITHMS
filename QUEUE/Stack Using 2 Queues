@@ -1,0 +1,75 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+public class Solution{
+    static class Stack {
+        // Define the data members.
+        Queue<Integer> q1;
+        Queue<Integer> q2;
+
+        public Stack() {
+            // Implement the Constructor.
+            q1=new LinkedList<Integer>();
+            q2=new LinkedList<Integer>();
+        }
+
+        /*----------------- Public Functions of Stack -----------------*/
+
+        public int getSize() {
+            // Implement the getSize() function.
+            return q1.size()+q2.size();
+        }
+
+        public boolean isEmpty() {
+            // Implement the isEmpty() function.
+            return (q1.isEmpty()&&q2.isEmpty());
+        }
+
+        public void push(int element) {
+            // Implement the push(element) function.
+            q2.add(element);  // add element in q2 when it is empty
+            while(!q1.isEmpty()){//push all the elements from q1 to q2 when q1 isnt empty
+                q2.add(q1.remove());
+            }
+            Queue<Integer> q =q1;//swap q1 and q2 therefore in the end q2 would be empty.
+            q1=q2;
+            q2=q;
+        }
+
+        public int pop() {
+            // Implement the pop() function.
+            
+            if(q1.isEmpty()){
+                return -1;
+            }
+            return q1.poll();
+            
+        }
+
+        public int top() {
+            // Implement the top() function.
+            
+            if(q1.isEmpty()){
+                return -1;
+            }
+            
+            return q1.peek();
+        }
+    }
+}
+
+Time complexity:
+
+push() operation: O(N)
+pop() operation: O(1)
+getSize() operation: O(1)
+isEmpty() operation: O(1)
+top() operation: O(1)
+Space complexity: O(N)
+
+The push() operation takes O(N) time because it needs to move all of the elements from one queue to the other. 
+The pop(), getSize(), isEmpty(), and top() operations all take O(1) time because they only need to access the front of the queue.
+The space complexity is O(N) because two queues are used to implement the stack.
+
+Note that the time complexity of the push() operation can be improved to O(1) by using a circular queue instead of a regular queue. However, this would make the code more complex.
