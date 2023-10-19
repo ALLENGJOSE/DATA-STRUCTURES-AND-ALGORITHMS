@@ -1,0 +1,55 @@
+For a given expression in the form of a string, find the minimum number of brackets that can be reversed in order to make the expression balanced. The expression will only contain curly brackets.
+If the expression can't be balanced, return -1.
+Example:
+Expression: {{{{
+If we reverse the second and the fourth opening brackets, the whole expression will get balanced. Since we have to reverse two brackets to make the expression balanced, the expected output will be 2.
+
+Expression: {{{
+In this example, even if we reverse the last opening bracket, we would be left with the first opening bracket and hence will not be able to make the expression balanced and the output will be -1.
+code:
+import java.util.Stack;
+public class Solution {
+
+	public static int countBracketReversals(String input) {
+		//Your code goes here
+		int len=input.length();
+
+		if(len==0){
+			return 0;
+		}
+		//1.check for odd
+		if(len%2 !=0){
+			return-1;
+		}
+		//2.remove valid expression
+		Stack<Character> s =new Stack<>();
+
+		for(int i=0;i<len;i++){
+			char ch=input.charAt(i);
+			if(ch=='{'){
+				s.push(ch);
+			}else{
+				//check for balanced
+				if(!s.isEmpty() && s.peek()=='{'){
+					s.pop();
+				}else{
+					s.push(ch);
+				}
+			}
+		}
+		int count=0;
+//3.Now only unbalanced expression remains
+		while(!s.isEmpty()){
+			char ch1=s.pop();   //ch1='{'
+			char ch2=s.pop();   //ch2='}'
+			if(ch1!=ch2){
+				count = count+2;
+			}else{
+				count=count+1;
+			}
+		}
+		return count;
+	}
+}
+TC:O(N)
+SC:O(N)
