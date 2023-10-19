@@ -1,0 +1,55 @@
+1st approach(worst approach):
+public class Solution {
+
+	public static Node<Integer> reverseRec(Node<Integer> head) {
+		//Your code goes here
+    if(head==null || head.next==null){
+      return head;
+      }
+
+    Node<Integer> finalHead=reverseRec(head.next);
+    Node<Integer> temp=finalHead
+    while(temp.next!=null){
+      temp=temp.next;
+       }
+    temp.next=Head;
+    Head.next=null;
+    return finalHead;
+}
+}
+TC:O(N^2)
+SC:O(N)
+
+2nd approach(badiya waala recursion):
+public class Solution {
+
+	public static Node<Integer> reverseRec(Node<Integer> head) {
+		//Your code goes here
+     if(head==null || head.next==null){
+      return head;
+      }
+    Node<Integer> reversedTail=head.next;
+    Node<Integer> finalHead=reverseRec(head.next);
+    reversedTail.next=head;
+    head.next=null;
+    return finalHead;
+    }
+  }
+  TC:O(N)
+  SC:O(N)
+)
+3rd approach(aur badhiya waala iterative)
+ Node<Integer> current =head;
+        Node<Integer> prev=null;
+        Node<Integer> temp;
+
+        while(current!=null){
+            temp=current.next;
+            current.next=prev;
+            prev=current;
+            current=temp;
+        }
+        return prev;
+
+TC:O(N)
+SC:O(1)
