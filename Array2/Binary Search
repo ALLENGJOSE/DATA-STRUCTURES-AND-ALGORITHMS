@@ -1,0 +1,19 @@
+public class Solution {
+    public static int search(int []nums, int target) {
+        // Write your code here.
+        int n = nums.length;
+        int start = 0 ; int end= n-1;
+        while(start<=end){
+            int mid=(start+end)/2;
+            if(nums[mid]==target){
+                return mid;
+            }else if(target>nums[mid]){
+                start=start+1;
+            }else{
+                end=end-1;
+            }
+        }
+        return -1;
+    }
+}
+TC:Olog(n)
