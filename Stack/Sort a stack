@@ -1,0 +1,48 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static void sortInserted(Stack<Integer> stack,int num){
+		if(stack.isEmpty() ||!stack.isEmpty() && stack.peek()<num){
+			stack.push(num);
+			return;
+		}
+		int n=stack.peek();
+		stack.pop();
+
+		//recursive call
+		sortInserted(stack, num);
+		stack.push(n);
+	}
+
+	public static void sortStack(Stack<Integer> stack) {
+		// Write your code here.
+		if(stack.isEmpty()){
+			return;
+		}
+		int num=stack.peek();
+		stack.pop();
+
+		//recursive call
+		sortStack(stack);
+
+Time complexity:
+
+The sortInserted() function takes up to O(n) time to insert a new element into the sorted stack. This is because it may have to compare the new element to every element in the stack to find its correct position.
+The sortStack() function recursively calls sortInserted() on a smaller and smaller stack until it is empty. This means that the total time complexity of the sortStack() function is proportional to the sum of the time complexities of all the sortInserted() calls that it makes.
+The time complexity of a recursive algorithm can be analyzed using a recurrence relation. In this case, the recurrence relation for the sortStack() function is:
+T(n) = T(n-1) + O(n)
+where T(n) is the time complexity of sorting a stack of size n.
+
+The solution to this recurrence relation is O(n^2).
+
+Space complexity:
+
+The sortStack() function uses a recursive call stack of size up to n to track the progress of the sorting algorithm. This is because it needs to keep track of the state of the stack at each level of the recursion.
+Therefore, the space complexity of the sortStack() function is O(n).
+Overall, the time complexity of the given code is O(n^2) and the space complexity is O(n).
+		
+		sortInserted(stack,num);
+	}
+
+}
