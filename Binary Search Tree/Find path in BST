@@ -1,0 +1,58 @@
+Given a BST and an integer k. Find and return the path from the node with data k and root (if a node with data k is present in given BST) in a list. Return empty list otherwise.
+Note: Assume that BST contains all unique elements.
+Sample Input 1:
+8 5 10 2 6 -1 -1 -1 -1 -1 7 -1 -1
+2
+Sample Output 1:
+2 5 8
+import java.util.ArrayList;
+
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 * 		public BinaryTreeNode(T data) 
+	 * 		{ 
+	 * 			this.data = data; 
+	 * 		}
+	 * }
+	 */
+
+	public static ArrayList<Integer> getPath(BinaryTreeNode<Integer> root, int data){
+		/* Your class should be named Solution
+		* Don't write main().
+		* Don't read input, it is passed as function argument.
+		* Return output and don't print it.
+		* Taking input and printing output is handled automatically.
+		*/
+		if(root==null) return null;
+		if(root.data==data){
+			ArrayList<Integer> ans = new ArrayList<>();
+			ans.add(root.data);
+			return ans;
+		}
+		if(root.data>data){
+			ArrayList<Integer> ans1 = getPath(root.left, data);
+
+			if(ans1!=null){
+				ans1.add(root.data);
+				return ans1;
+			}
+		}
+		if(root.data<data){
+			ArrayList<Integer> ans2= getPath(root.right, data);
+			if(ans2!=null){
+				ans2.add(root.data);
+				return ans2;
+			}
+		}
+		 return null;
+	}
+}
+TC:O(H) WORST CASE:O(N)
+SC:O(H) WORST CASE:O(N)
