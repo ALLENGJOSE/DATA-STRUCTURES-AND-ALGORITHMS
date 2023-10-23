@@ -1,0 +1,24 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<Integer> removeDuplicates(ArrayList<Integer> arr) {
+
+		// Write your code here.
+		ArrayList<Integer> output = new ArrayList<>();
+		HashMap<Integer, Boolean> seen = new HashMap<>();
+		for(int i=0;i<arr.size();i++){
+			if(seen.containsKey(arr.get(i))){
+				continue;
+			}
+			output.add(arr.get(i));
+			seen.put(arr.get(i), true);
+		}
+		return output;
+
+	}
+}
+TC:O(N)
+SC:O(N)
