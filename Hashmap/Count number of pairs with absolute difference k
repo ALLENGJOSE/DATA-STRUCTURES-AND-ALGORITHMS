@@ -1,0 +1,39 @@
+Given an integer array nums and an integer k, return the number of pairs (i, j) where i < j such that |nums[i] - nums[j]| == k.
+
+The value of |x| is defined as:
+
+x if x >= 0.
+-x if x < 0.
+
+Example 3:
+
+Input: nums = [3,2,1,5,4], k = 2
+Output: 3
+Explanation: The pairs with an absolute difference of 2 are:
+- [3,2,1,5,4]
+- [3,2,1,5,4]
+- [3,2,1,5,4]
+
+Code:
+class Solution {
+    public int countKDifference(int[] nums, int k) {
+    
+        int ans = 0;
+        
+        Map<Integer,Integer> m = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            
+            if(m.containsKey(nums[i]+k))
+                ans+=m.get(nums[i]+k);
+                
+            if(m.containsKey(nums[i]-k))    
+                ans+=m.get(nums[i]-k);
+               
+            m.put(nums[i],m.getOrDefault(nums[i],0) +1);
+        }
+        
+        return ans;
+    }
+}
+TC:O(N)
+SC:O(N)
