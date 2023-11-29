@@ -1,1 +1,61 @@
+Basic Approach:
+import java.util.*;
 
+class MedianFinder {
+        private ArrayList<Integer> input;
+
+    public MedianFinder() {
+         input = new ArrayList<>();
+    }
+    
+    public void addNum(int num) {
+        input.add(num);
+    }
+    
+    public double findMedian() {
+        Collections.sort(input);
+        int len = input.size();
+        if(len %2 ==1){
+            return input.get(len/2);
+        }else{
+            return 0.5*(input.get(len/2)+input.get(len/2-1));
+        }
+    }
+}
+
+TC:O(NLOGN)
+SC:O(N)
+
+Optimised Approach:
+import java.util.*;
+
+class MedianFinder {
+
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.  reverseOrder());
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    
+    public void addNum(int num) {
+        if(maxHeap.isEmpty() || maxHeap.peek() >=num){
+            maxHeap.add(num);
+        }else{
+            minHeap.add(num);
+        }
+
+        if(maxHeap.size() > minHeap.size()+1){
+            minHeap.add(maxHeap.poll());
+        }else if(maxHeap.size()<minHeap.size()){
+            maxHeap.add(minHeap.poll());
+        }
+    }
+    
+    public double findMedian() {
+        if(maxHeap.size() == minHeap.size()){
+            return maxHeap.peek()/2.0 + minHeap.peek()/2.0;
+        }else{
+            return maxHeap.peek();
+        }
+    }
+}
+
+TC:O(LOGN) AS IN ADDNUM INSERTION IS TAKING PLACE, FINDMEDIAN() IS O(1) AS WE CAN FIND MEDIAN FROM THE TOP ELEMENTS
+SC:O(N) BECAUSE TO STORE N ELEMENTS IN PRIORITY QUEUE.
